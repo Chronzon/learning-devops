@@ -36,6 +36,10 @@ projects/   Self-contained hands-on projects (added as they are built)
 
 - [Kubernetes refresh](docs/kubernetes/README.md)
 
+## Hands-on sessions
+
+- [Session 01: Linux & Networking Foundations](projects/README.md)
+
 ## Principles
 
 Each project should include a short README explaining its goal, architecture, prerequisites, how to run it, how to verify it, and the lessons learned.
