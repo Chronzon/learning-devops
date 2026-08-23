@@ -39,6 +39,7 @@ projects/   Self-contained hands-on projects (added as they are built)
 ## Hands-on sessions
 
 - [Session 01: Linux & Networking Foundations](projects/01-linux-networking-foundations/README.md)
+- [Session 02: Docker Refresh](projects/02-docker-refresh/README.md)
 
 ## Principles
 

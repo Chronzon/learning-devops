@@ -4,3 +4,6 @@
 # Editor settings
 .vscode/
 .idea/
+
+# Runtime output from the Session 02 bind-mount experiment
+projects/02-docker-refresh/data/
