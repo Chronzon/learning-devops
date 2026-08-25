@@ -41,6 +41,7 @@ projects/   Self-contained hands-on projects (added as they are built)
 - [Session 01: Linux & Networking Foundations](projects/01-linux-networking-foundations/README.md)
 - [Session 02: Docker Refresh](projects/02-docker-refresh/README.md)
 - [Session 03: Container Registry](projects/03-container-registry/README.md)
+- [Session 04: CI/CD Fundamentals](projects/04-ci-cd-fundamentals/README.md)
 
 ## Principles
 
