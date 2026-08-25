@@ -9,7 +9,7 @@ jobs:
     
     defaults:
       run:
-        working-directory: 04-ci-cd-fundamentals/app
+        working-directory: projects/04-ci-cd-fundamentals/app
 
     steps:
       - uses: actions/checkout@v4
