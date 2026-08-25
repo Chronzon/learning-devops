@@ -21,3 +21,6 @@ jobs:
       - run: npm install
       - run: npm test
       - run: npm run build
+
+      - name: Build Docker Image
+        run: docker build -t learning-devops/ci-fundamentals:ci .
