@@ -37,4 +37,9 @@ jobs:
       - run: npm run build
 
       - name: Build Docker Image
-        run: docker build -t learning-devops/ci-fundamentals:ci .
+        run: |
+          docker build -t depslearningdevopsacr.azurecr.io/learning-devops/ci-fundamentals:${{ github.sha }} .
+
+      - name: Push Docker Image
+        run: |
+          docker push depslearningdevopsacr.azurecr.io/learning-devops/ci-fundamentals:${{ github.sha }}
