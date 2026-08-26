@@ -42,6 +42,7 @@ projects/   Self-contained hands-on projects (added as they are built)
 - [Session 02: Docker Refresh](projects/02-docker-refresh/README.md)
 - [Session 03: Container Registry](projects/03-container-registry/README.md)
 - [Session 04: CI/CD Fundamentals](projects/04-ci-cd-fundamentals/README.md)
+- [Session 05: Secure CI Image Publishing](projects/05-secure-ci-image-publishing/README.md)
 
 ## Principles
 
