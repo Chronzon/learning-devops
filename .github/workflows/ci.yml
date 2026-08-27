@@ -2,6 +2,9 @@ name: CI
 
 on:
   pull_request:
+    paths:
+      - "projects/06-cd-foundations/app/**"
+      - ".github/workflows/ci.yml"
 
 permissions:
   id-token: write
