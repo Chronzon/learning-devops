@@ -1,0 +1,62 @@
+name: CD - Staging
+
+on:
+  workflow_dispatch:
+    inputs:
+      image_tag:
+        description: "Exact container image tag to deploy"
+        required: true
+        type: string
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  deploy-staging:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Login to Azure with OIDC
+        uses: azure/login@v3
+        with:
+          client-id: ${{ secrets.AZURE_CD_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Deploy exact image to staging
+        run: |
+          az containerapp update \
+            --name ca-learning-devops-s06-staging \
+            --resource-group rg-learning-devops-session06 \
+            --image depslearningdevopsacr06.azurecr.io/learning-devops/session-06:${{ inputs.image_tag }} \
+            --set-env-vars APP_ENV=staging
+
+      - name: Get staging endpoint
+        id: endpoint
+        run: |
+          FQDN=$(az containerapp show \
+            --name ca-learning-devops-s06-staging \
+            --resource-group rg-learning-devops-session06 \
+            --query properties.configuration.ingress.fqdn \
+            -o tsv)
+
+          echo "fqdn=$FQDN" >> "$GITHUB_OUTPUT"
+
+      - name: Smoke test staging deployment
+        run: |
+          FQDN="${{ steps.endpoint.outputs.fqdn }}"
+
+          for attempt in {1..12}; do
+            if curl --fail --silent --show-error "https://$FQDN/" &&
+               curl --fail --silent --show-error "https://$FQDN/health"; then
+              echo "Staging smoke test passed."
+              exit 0
+            fi
+
+            echo "Deployment not ready yet. Retrying..."
+            sleep 10
+          done
+
+          echo "Staging smoke test failed."
+          exit 1
