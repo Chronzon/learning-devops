@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+
+kind: Deployment
+
+metadata:
+  name: learning-devops
+
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: learning-devops
+
+  template:
+    metadata:
+      labels:
+        app: learning-devops
+    
+    spec:
+      containers:
+        - name: learning-devops
+          image: learning-devops/session-07:local
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3000
+          env:
+            - name: APP_ENV
+              value: kubernetes-local-v2
+          
+          resources:
+            requests:
+              memory: "32Mi"
+              cpu: "50m"
+            limits:
+              memory: "128Mi"
+              cpu: "200m"
