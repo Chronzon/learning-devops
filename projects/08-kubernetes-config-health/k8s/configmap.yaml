@@ -1,0 +1,10 @@
+apiVersion: v1
+
+kind: ConfigMap
+
+metadata:
+  name: learning-devops-config
+
+data:
+  APP_ENV: kubernetes-session-08
+  LOG_LEVEL: info

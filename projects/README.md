@@ -11,5 +11,6 @@ Practical DevOps exercises, documented with their objective, environment, comman
 | [05](05-secure-ci-image-publishing/README.md) | Secure CI Image Publishing | Complete |
 | [06](06-cd-foundations/README.md) | CD Foundations | Complete |
 | [07](07-kubernetes-foundations/README.md) | Kubernetes Foundations | Complete |
+| [08](08-kubernetes-config-health/README.md) | Kubernetes Configuration, Health & Debugging | Complete |
 
 Each session is kept in its own directory so that supporting manifests, scripts, or application code can be added alongside its notes when needed.

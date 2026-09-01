@@ -45,6 +45,7 @@ projects/   Self-contained hands-on projects (added as they are built)
 - [Session 05: Secure CI Image Publishing](projects/05-secure-ci-image-publishing/README.md)
 - [Session 06: CD Foundations](projects/06-cd-foundations/README.md)
 - [Session 07: Kubernetes Foundations](projects/07-kubernetes-foundations/README.md)
+- [Session 08: Kubernetes Configuration, Health & Debugging](projects/08-kubernetes-config-health/README.md)
 
 ## Principles
 
