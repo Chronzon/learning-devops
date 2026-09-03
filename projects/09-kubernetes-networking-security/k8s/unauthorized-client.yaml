@@ -1,0 +1,27 @@
+apiVersion: v1
+
+kind: Pod
+
+metadata:
+  name: unauthorized-client
+  namespace: web
+  labels:
+    role: test-client
+
+spec:
+  containers:
+    - name: client
+      image: busybox:1.36
+      command: 
+        - sleep
+        - "7200"
+
+      resources:
+        requests:
+          memory: "32Mi"
+          cpu: "50m"
+        limits:
+          memory: "128Mi"
+          cpu: "200m"
+
+  restartPolicy: Never
