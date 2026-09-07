@@ -1,0 +1,15 @@
+apiVersion: v1
+
+kind: PersistentVolumeClaim
+
+metadata:
+  name: session-10-pvc
+  namespace: session-10
+
+spec:
+  accessModes:
+    - ReadWriteOnce
+
+  resources:
+    requests:
+      storage: 100Mi 
