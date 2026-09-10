@@ -1,0 +1,11 @@
+{
+  "name": "session-11-order-api",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "amqplib": "^2.0.1"
+  }
+}
