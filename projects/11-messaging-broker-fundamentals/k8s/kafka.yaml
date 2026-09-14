@@ -1,0 +1,95 @@
+apiVersion: apps/v1
+kind: StatefulSet
+
+metadata:
+  name: kafka
+  namespace: session-11
+
+spec:
+  serviceName: kafka-headless
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: kafka
+
+  template:
+    metadata:
+      labels:
+        app: kafka
+
+    spec:
+      securityContext:
+        fsGroup: 1000
+
+      containers:
+      - name: kafka
+        image: apache/kafka:4.3.1
+
+        ports:
+        - name: kafka
+          containerPort: 9092
+        - name: controller
+          containerPort: 9093
+
+        envFrom:
+        - configMapRef:
+            name: kafka-config
+
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "250m"
+          limits:
+            memory: "1Gi"
+            cpu: "1"
+
+        volumeMounts:
+        - name: data
+          mountPath: /var/lib/kafka/data
+
+  volumeClaimTemplates:
+  - metadata:
+      name: data
+    spec:
+      accessModes: 
+      - ReadWriteOnce
+      storageClassName: standard
+      resources:
+        requests:
+          storage: 1Gi
+--- 
+apiVersion: v1
+kind: Service
+
+metadata:
+  name: kafka-headless
+  namespace: session-11
+
+spec:
+  selector:
+    app: kafka
+
+  clusterIP: None
+
+  ports: 
+  - name: controller
+    port: 9093
+    targetPort: controller
+---
+apiVersion: v1
+kind: Service
+
+metadata:
+  name: kafka
+  namespace: session-11
+spec:
+  type: ClusterIP
+
+  selector:
+    app: kafka
+
+  ports:
+  - name: kafka
+    port: 9092
+    targetPort: kafka
