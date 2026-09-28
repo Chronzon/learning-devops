@@ -48,6 +48,7 @@ projects/   Self-contained hands-on projects (added as they are built)
 - [Session 08: Kubernetes Configuration, Health & Debugging](projects/08-kubernetes-config-health/README.md)
 - [Session 09: Kubernetes Networking & NetworkPolicy](projects/09-kubernetes-networking-security/README.md)
 - [Session 10: Kubernetes Persistent Storage & StatefulSets](projects/10-kubernetes-persistent-storage/README.md)
+- [Session 11: Messaging & Broker Fundamentals](projects/11-messaging-broker-fundamentals/README.md)
 
 ## Principles
 

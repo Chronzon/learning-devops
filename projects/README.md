@@ -14,5 +14,6 @@ Practical DevOps exercises, documented with their objective, environment, comman
 | [08](08-kubernetes-config-health/README.md) | Kubernetes Configuration, Health & Debugging | Complete |
 | [09](09-kubernetes-networking-security/README.md) | Kubernetes Networking & NetworkPolicy | Complete |
 | [10](10-kubernetes-persistent-storage/README.md) | Kubernetes Persistent Storage & StatefulSets | Complete |
+| [11](11-messaging-broker-fundamentals/README.md) | Messaging & Broker Fundamentals | Complete |
 
 Each session is kept in its own directory so that supporting manifests, scripts, or application code can be added alongside its notes when needed.

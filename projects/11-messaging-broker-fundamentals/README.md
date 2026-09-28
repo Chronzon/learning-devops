@@ -154,3 +154,9 @@ Azure Service Bus
 At-least-once delivery means duplicate delivery is possible.
 
 Reliable consumers should therefore combine broker acknowledgements with idempotent application logic.
+
+## Session Status
+
+Complete. The learner performed the hands-on labs manually; Azure Service Bus coverage was conceptual.
+
+The learner confirmed that the `session-11` namespace was cleaned up after the labs. The reusable `kind` cluster is retained for future sessions.
