@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+
+kind: Deployment
+
+metadata:
+  name: email-consumer
+  namespace: session-11
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: email-consumer
+
+  template:
+    metadata:
+      labels:
+        app: email-consumer
+
+    spec: 
+      containers:
+      - name: email-consumer
+        image: learning-devops/session-11-email-consumer:local
+        imagePullPolicy: Never
+
+        env:
+        - name: RABBITMQ_HOST
+          value: rabbitmq
+          
+        - name: RABBITMQ_PORT
+          value: "5672"
+
+        - name: RABBITMQ_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: rabbitmq-auth
+              key: username
+
+        - name: RABBITMQ_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: rabbitmq-auth
+              key: password
+
+        resources:
+            requests:
+              memory: "32Mi"
+              cpu: "50m"
+            limits:
+              memory: "128Mi"
+              cpu: "200m"
