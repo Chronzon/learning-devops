@@ -1,0 +1,84 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: nats
+  namespace: session-11
+
+spec:
+  replicas: 1
+  selector: 
+    matchLabels: 
+      app: nats
+  template:
+    metadata: 
+      labels: 
+        app: nats
+    spec: 
+      containers: 
+        - name: nats
+          image: nats:2.14.6-alpine
+          args: 
+            - "-c"
+            - "/etc/nats/nats.conf"
+
+          ports: 
+            - name: client
+              containerPort: 4222
+            - name: monitoring
+              containerPort: 8222
+
+          volumeMounts: 
+            - name: config 
+              mountPath: /etc/nats
+              readOnly: true 
+
+            - name: data
+              mountPath: /data
+
+          readinessProbe:
+            tcpSocket: 
+              port: client
+            initialDelaySeconds: 2
+            periodSeconds: 5
+
+          livenessProbe: 
+            tcpSocket:
+              port: client
+            initialDelaySeconds: 5
+            periodSeconds: 10
+
+          resources: 
+            requests: 
+              cpu: 50m
+              memory: 32Mi
+            limits: 
+              cpu: 250m
+              memory: 128Mi
+
+      volumes: 
+        - name: config 
+          configMap: 
+            name: nats-config
+        - name: data
+          persistentVolumeClaim: 
+            claimName: nats-data
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nats
+  namespace: session-11
+
+spec:
+  selector:
+    app: nats
+
+  ports:
+    - name: client
+      port: 4222
+      targetPort: client
+    - name: monitoring
+      port: 8222
+      targetPort: monitoring
+
+
